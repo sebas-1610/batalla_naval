@@ -6,6 +6,8 @@
     <title>Inicio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/index.css">
+    <script src="../controllers/apiController.js"></script>
+
 </head>
 <body>
     <div class="titulo row p-5 text-white">
@@ -14,15 +16,15 @@
 
     <div class="row text-center"> <!-- Aquí debe ir la imagen -->
         <form action="" class="form">
-            <div class="llenar pt-2 fs-3 text-white">
+            <div class="llenar pt-2 fs-3 text-white d-flex flex-column">
                 
             <div class="input-box col-12 mb-4">
                 <label for="nickname">nickname</label>
-                <input type="text" id="nickname" placeholder="ingrese su nickname">
+                <input class="col-4"  type="text" id="nickname" placeholder="ingrese su nickname">
             </div>
             <div class="input-box col-12 mb-5 p-2">
                 <label for="nations">Nación</label>
-                <select id="nations" name="nations">
+                <select id="nations" name="nations" class="col-4">
                     <option value="">cargando las naciones...</option>
                 </select>
             </div>
@@ -33,6 +35,5 @@
         </form>
     </div>
     
-    <script src="../controllers/apiController.js"></script>
 </body>
 </html>

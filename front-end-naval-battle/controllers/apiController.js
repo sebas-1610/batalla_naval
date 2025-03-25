@@ -17,12 +17,14 @@ async function fetchCountries() {
 // Función para llenar el menú desplegable con los países
 function populateCountriesDropdown(countries) {
     const nationsDropdown = document.getElementById('nations');
-    nationsDropdown.innerHTML = ''; // Limpiar opciones existentes
+
 
     countries.forEach(country => {
-        const option = document.createElement('option');
-        option.value = country.code; // Asumiendo que el objeto país tiene una propiedad 'code'
-        option.textContent = country.name; // Asumiendo que el objeto país tiene una propiedad 'name'
+        let code = Object.keys(country)[0];
+        let option = document.createElement('option');
+        let name = country[code]
+        option.value = code; // Asumiendo que el objeto país tiene una propiedad 'code'
+        option.textContent  = name; // Asumiendo que el objeto país tiene una propiedad 'name'
         nationsDropdown.appendChild(option);
     });
 }

@@ -27,7 +27,9 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      <!-- Dividir navbar?? -->
+      <div class="nav-link disabled">|</div>
+      <!-- ***************** -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
@@ -35,20 +37,18 @@
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
+
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
-              id="navbarDropdown"
+              id="navbarRanking"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Dropdown
+              Ranking
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#">Action</a>
@@ -57,22 +57,41 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
+          <!-- Puntajes -->
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link disabled" href="#">Puntaje:</a>
           </li>
+          <a href="#" class="nav-link disabled">12</a>
+          <!-- ***************** -->
+          <!-- Boton salir Hasta la derecha -->
+          <button class="" id="">Salir</button>
+
+          <!-- ***************** -->
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form>
       </div>
     </nav>
+    <!-- Input tamaño del tablero -->
+    <div class="mb-3">
+      <label for="tamañoTablero" class="form-label" id="labelTamañoTablero"
+        >Ingrese La Longitud del Tablero:</label
+      >
+      <input
+        type="number"
+        id="tamañoTablero"
+        placeholder="Ingrese Un numero entre 10 y 20"
+        class="form-control"
+      />
+    </div>
+    <!-- ***************** -->
+    <!-- Boton para enviar input -->
+    <div class="d-flex gap-2">
+      <button id="botonNumero" class="jugar px-5 py-2" type="submit">
+        Enviar
+      </button>
+    </div>
+
+    <!-- Div para las casillas del tablero -->
+    <div id="tablero" class="mt-4">Hola Mundo</div>
+    <!-- ***************** -->
   </body>
 </html>

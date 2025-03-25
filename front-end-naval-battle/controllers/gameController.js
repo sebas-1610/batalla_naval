@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (n >= 10 && n <= 20) {
       let nuevaTabla = document.createElement("table");
       nuevaTabla.id = "tabla-juego";
-      //   nuevaTabla.style.backgroundColor = "blue";
+      nuevaTabla.classList.add("tabla-juego");
 
       let contenedorTabla = document.getElementById("contenedorTablero");
       nuevaTabla.style.width = "100%";
@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let j = 0; j < n; j++) {
           let nuevaCelda = document.createElement("td");
           nuevaCelda.id = "celda" + i + j;
+          nuevaCelda.classList.add("celda-juego");
           nuevaCelda.style.width = "auto";
           nuevaCelda.style.height = "40px";
           nuevaCelda.style.border = "1px solid black";
@@ -39,8 +40,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       let botonValidar = document.createElement("button");
       botonValidar.className = "btn btn-primary";
-      botonValidar.innerText = "Validar";
+      botonValidar.innerText = "START";
       contenedorTabla.appendChild(botonValidar);
+
+      // Ocultar el div con id "inputTamañoTablero"
+      document.getElementById("inputTamañoTablero").style.display = "none";
     } else {
       console.log("Ingrese numero valido entre 10 y 20");
     }
@@ -52,12 +56,16 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("contenedorTablero").style.width = "65%";
   document.getElementById("contenedorTablero").style.margin = "0 auto";
+  document
+    .getElementById("contenedorTablero")
+    .classList.add("contenedor-tablero");
 
   document.addEventListener("click", function (event) {
     if (event.target.tagName === "TD") {
       let img = document.createElement("img");
       img.style.width = "100%";
       img.style.height = "100%";
+      img.classList.add("img-juego");
       if (Math.random() > 0.5) {
         img.src = "XXXX"; // Replace with the actual image URL for a hit
       } else {

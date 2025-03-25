@@ -71,7 +71,7 @@
       </div>
     </nav>
     <!-- Input tamaño del tablero -->
-    <div class="mb-3">
+    <div class="mb-3" id="inputTamañoTablero">
       <label for="tamañoTablero" class="form-label" id="labelTamañoTablero"
         >Ingrese La Longitud del Tablero:</label
       >
@@ -81,14 +81,14 @@
         placeholder="Ingrese Un numero entre 10 y 20"
         class="form-control"
       />
+      <!-- Boton para enviar input -->
+      <div class="d-flex gap-2">
+        <button id="botonNumero" class="jugar px-5 py-2" type="submit">
+          Enviar
+        </button>
+      </div>
     </div>
     <!-- ***************** -->
-    <!-- Boton para enviar input -->
-    <div class="d-flex gap-2">
-      <button id="botonNumero" class="jugar px-5 py-2" type="submit">
-        Enviar
-      </button>
-    </div>
 
     <!-- Div para las casillas del tablero -->
     <div id="contenedorTablero" class="mt-4">Hola Mundo</div>

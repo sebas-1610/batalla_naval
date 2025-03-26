@@ -149,5 +149,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-// Add this code at the end of the file

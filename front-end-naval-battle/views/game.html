@@ -63,15 +63,16 @@
     <div id="figureContainer" class="d-flex justify-content-center mt-4"></div>
     <!-- ***************** -->
 
-    <div class="input-box col-12 mb-5 p-2 text-center">
+    <!-- Input for Board Size -->
+    <div class="input-box col-12 mb-4 text-center" id="inputTamañoTablero">
+
+      <div class="input-box col-12 mb-5 p-2 text-center"> <!--toca modificarlo con el API-->
         <label for="location" class="form-label" id="labelLocation">Ubicación geográfica</label> 
         <select id="location" name="location" class="col-4">
             <option value="">cargando las Ubicaciones...</option>
         </select>
     </div>
 
-    <!-- Input for Board Size -->
-    <div class="input-box col-12 mb-4 text-center" id="inputTamañoTablero">
         <label for="tamañoTablero" class="form-label" id="labelTamañoTablero">Longitud del Tablero</label>
         <input class="col-4"  type="number" id="tamañoTablero" placeholder="Ingrese Un numero entre 10 y 20">
         

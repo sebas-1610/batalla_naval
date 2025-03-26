@@ -34,6 +34,27 @@ document.addEventListener("DOMContentLoaded", function () {
           nuevaCelda.style.width = "auto";
           nuevaCelda.style.height = "40px";
           nuevaCelda.style.border = "1px solid black";
+          nuevaCelda.addEventListener("dragover", function (event) {
+            event.preventDefault();
+          });
+          nuevaCelda.addEventListener("drop", function (event) {
+            event.preventDefault();
+            const figureId = event.dataTransfer.getData("text/plain");
+            const figureElement = document.getElementById(figureId);
+            const size = parseInt(figureElement.dataset.size);
+            const x = parseInt(this.id.substring(5, 6));
+            const y = parseInt(this.id.substring(6, 7));
+
+            if (y + size <= n) {
+              for (let i = y; i < y + size; i++) {
+                document
+                  .getElementById(`celda${x}${i}`)
+                  .classList.add("selected");
+              }
+            } else {
+              alert("La figura no cabe en esta posición");
+            }
+          });
           nuevafila.appendChild(nuevaCelda);
         }
         nuevaTabla.appendChild(nuevafila);
@@ -45,6 +66,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Ocultar el div con id "inputTamañoTablero"
       document.getElementById("inputTamañoTablero").style.display = "none";
+
+      // Crear contenedor para las figuras
+      const figureContainer = document.createElement("div");
+      figureContainer.id = "figureContainer";
+      figureContainer.style.display = "flex";
+      figureContainer.style.justifyContent = "center";
+      figureContainer.style.marginTop = "20px";
+      document.body.appendChild(figureContainer);
+
+      // Crear figuras
+      const figures = [
+        { id: "figure1", size: 5 },
+        { id: "figure2", size: 4 },
+        { id: "figure3", size: 3 },
+        { id: "figure4", size: 2 },
+      ];
+
+      figures.forEach((figure) => {
+        const figureElement = document.createElement("div");
+        figureElement.id = figure.id;
+        figureElement.className = "figure";
+        figureElement.draggable = true;
+        figureElement.innerText = `Figura ${figure.size}`;
+        figureElement.dataset.size = figure.size;
+        figureElement.style.border = "1px solid black";
+        figureElement.style.padding = "10px";
+        figureElement.style.margin = "5px";
+        figureElement.style.cursor = "grab";
+        figureElement.addEventListener("dragstart", function (event) {
+          event.dataTransfer.setData("text/plain", event.target.id);
+        });
+        figureContainer.appendChild(figureElement);
+      });
     } else {
       console.log("Ingrese numero valido entre 10 y 20");
     }
@@ -66,12 +120,11 @@ document.addEventListener("DOMContentLoaded", function () {
       img.style.width = "100%";
       img.style.height = "100%";
       img.classList.add("img-juego");
-      if (Math.random() > 0.5) {
-        img.src = "XXXX"; // Replace with the actual image URL for a hit
-      } else {
-        img.src = "OOOO"; // Replace with the actual image URL for a miss
-      }
+      // if (Math.random() > 0.5) {
+      //   img.src = "front-end-naval-battle/assets/images/ships/ship1.png"; // Replace with the actual image URL for a hit
+      // }
       event.target.innerHTML = "";
+      event.target.style.backgroundColor = "grey"; // Cambiar el color de la celda a gris
       event.target.appendChild(img);
     }
   });

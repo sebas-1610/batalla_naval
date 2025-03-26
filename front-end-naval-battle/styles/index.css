@@ -77,7 +77,7 @@
 .tabla-juego {
     width: 100%;
     table-layout: fixed;
-    background-color: royalblue;
+    background-color: blue;
   }
   
   .celda-juego {

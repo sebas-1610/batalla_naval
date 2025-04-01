@@ -20,10 +20,7 @@
 
     <div class="row text-center">
       <!-- Aquí debe ir la imagen -->
-      <form
-        action="http://127.0.0.1:3000/front-end-naval-battle/views/game.html#"
-        class="form"
-      >
+      <form class="form">
         <div class="llenar pt-2 fs-3 text-white d-flex flex-column">
           <div class="input-box col-12 mb-4">
             <label for="nickname">nickname</label>
@@ -42,7 +39,12 @@
           </div>
         </div>
         <div class="botonJugar col-12 fs-1">
-          <button class="jugar px-5 py-2" type="submit">
+          <button
+            class="jugar px-5 py-2"
+            type="button"
+            id="botonJugar"
+            onclick="redirectToGame()"
+          >
             <h1 class="text-white">JUGAR</h1>
           </button>
         </div>

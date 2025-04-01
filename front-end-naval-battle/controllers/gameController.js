@@ -1,14 +1,24 @@
 // Recibir del input el nickname del jugador y guardarlo en la sesión
-// No Terminado
 document.addEventListener("DOMContentLoaded", function () {
-  const nicknameElement = document.getElementById("nickname");
-  if (nicknameElement) {
-    console.log(nicknameElement.textContent);
-    // nicknameElement.textContent = nicknameElement.textContent; // Replace with the actual nickname
-    nicknameElement.textContent = "Player 1"; // Solo es un intento
+  // Obtener los parámetros de la URL
+  const params = new URLSearchParams(window.location.search);
+  const nickname = params.get("nickname");
+  const nation = params.get("nation");
+
+  // Ejemplo de uso: mostrar el nickname en la barra de navegación
+  if (nickname) {
+    const nicknameElement = document.getElementById("nickname");
+    if (nicknameElement) {
+      nicknameElement.textContent = nickname;
+    }
+  }
+
+  // Ejemplo de uso: mostrar la nación en la consola
+  if (nation) {
+    console.log(`Nación seleccionada: ${nation}`);
   }
 });
-// ----------------------------
+
 document.addEventListener("DOMContentLoaded", function () {
   let boton = document.getElementById("botonNumero");
   let matrix = [];

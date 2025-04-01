@@ -1,36 +1,81 @@
-/* styles/weather.css */
-.container {
-    
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-    font-family: Arial, sans-serif;
-}
-
-.form-select {
-    text-align: center;
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-.weather-card {
-    background: rgba(70, 54, 41, 0.79);
-    border-radius: 8px;
-    padding: 1.5rem;
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.weather-card img {
-    width: 60px;
+.weather-container {
+    display: flex; /* Activa el modelo Flexbox */
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-around; /* Distribuye el espacio horizontalmente */
+    gap: 1rem; /* Espacio entre los elementos */
+    background-color: rgba(27, 20, 14, 0.416); /* Fondo */
+    background: linear-gradient(to bottom, rgb(27, 20, 14), rgba(27, 20, 14, 0.021));
+    border-radius: 8px; /* Bordes redondeados */
+    text-align: left; /* Asegura que el texto esté alineado a la izquierda */
+    padding: 0%;
+  }
+  
+  .weather-info img {
+    width: 60px; /* Tamaño de la imagen */
     height: 60px;
-    margin: 0.5rem 0;
-}
+  }
 
-.weather-card h3 {
-    margin: 0 0 0.5rem 0;
-    color: #333;
-}
+  
+  .weather-info {
+    display: flex;
+    flex-direction: column; /* Organiza el contenido del texto verticalmente */
+  }
+  
+  .weather-temp {
+    font-size: 1.5rem; /* Tamaño más destacado */
+    font-weight: bold;
+    color: #131313;
+  }
+  
+  .weather-desc {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .weather-country {
+    font-size: 0.8rem;
+    color: #999;
+  }
+  .weather-subinfo{
+    padding: 0%;
+    margin: 0%;
+  }
+  
+  @media (max-width: 576px) {
+    .weather-container {
+      display: flex;
+      align-items: center; /* Centra los elementos */
+      padding: 1rem;
+    }
+  
+    .weather-info {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      text-align: center; /* Alinea el contenido al centro */
+    }
+  
+    .weather-info h3 {
+      font-size: 1.2rem; /* Ajusta el tamaño del encabezado */
+    }
+  
+    .weather-info img {
+      width: 50px; /* Tamaño más pequeño para la imagen */
+      height: 50px;
+      display: block;
+      margin: 0 auto; /* Centra la imagen */
+    }
+  
+    .weather-subinfo {
+        display: flex; /* Alinea los elementos horizontalmente */
+        flex-direction: row; /* Organiza en una fila */
+        align-items: center; /* Centra los elementos verticalmente */
+        justify-content: space-between; /* Espaciado uniforme entre ellos */
+        
+      }
+    .weather-temp, .weather-desc, .weather-country {
+        font-size: 1rem; /* Ajusta el tamaño del texto */
+        margin: 0; /* Elimina márgenes */
+        padding: 0; /* Elimina padding */
+        text-align: center; /* Centra el texto dentro de cada elemento */
+    }
+  }
+  

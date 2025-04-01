@@ -15,16 +15,21 @@ function updateWeatherDisplay(weather, countryName, countryCode) {
     }
 
     weatherDisplay.innerHTML = `
-        <h3>Clima en ${weather.actualLocation || countryName}</h3>
-        <div class="weather-data">
-            <img src="https://openweathermap.org/img/wn/${weather.icon}@2x.png" alt="Icono del clima">
-            <div>
-                <p class="weather-temp">${weather.temperature} °C</p>
-                <p class="weather-desc">${weather.conditions}</p>
-                <small class="weather-country">${countryCode.toUpperCase()}</small>
-            </div>
-        </div>
-    `;
+  <div class="weather-container">
+    <div class="weather-info col-4">
+      <h3>Clima en ${weather.actualLocation || countryName} 
+      <img src="https://openweathermap.org/img/wn/${weather.icon}@2x.png" alt="Icono del clima"></h3>
+      
+      <div class="row weather-subinfo">
+      <p class="weather-temp col-5 p-0 m-0 ">${weather.temperature} °C</p>
+      <p class="weather-desc col-5 p-0 m-0 ">${weather.conditions}</p>
+      <small class="weather-country col-2 p-0 m-0 ">${countryCode.toUpperCase()}</small>
+      
+      </div>
+    </div>
+  </div>
+`;
+
 }
 
 function setupWeatherSystem() {

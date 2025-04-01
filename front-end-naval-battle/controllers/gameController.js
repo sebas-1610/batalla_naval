@@ -30,20 +30,28 @@ document.addEventListener("DOMContentLoaded", function () {
   function createMatrix(size) {
     let contenedorTabla = document.getElementById("contenedorTablero");
     contenedorTabla.innerHTML = "";
+
+    // Crear un contenedor para el tablero con tamaño fijo y centrado
+    let tablero = document.createElement("div");
+    tablero.className = "d-flex flex-wrap";
+    tablero.style.width = "100%";
+    tablero.style.maxWidth = "500px"; // Tamaño máximo del tablero
+    tablero.style.aspectRatio = "1 / 1"; // Mantener proporción cuadrada
+    tablero.style.border = "2px solid black";
+
+    contenedorTabla.appendChild(tablero);
+
     matrix = []; // Reiniciar la matriz
     for (let i = 0; i < size; i++) {
-      let row = document.createElement("div");
-      row.className = "myRow";
-      row.style.display = "flex"; // Asegurarse de que las celdas se alineen horizontalmente
-      contenedorTabla.appendChild(row);
       let list = [];
       for (let j = 0; j < size; j++) {
         let cell = document.createElement("div");
         cell.className = "grid";
         cell.id = i + "," + j;
-        cell.style.width = "40px";
-        cell.style.height = "40px";
+        cell.style.flex = `0 0 ${100 / size}%`; // Ajustar tamaño de las celdas según el tamaño del tablero
+        cell.style.aspectRatio = "1 / 1"; // Mantener proporción cuadrada
         cell.style.border = "1px solid black";
+        cell.style.boxSizing = "border-box"; // Incluir bordes en el tamaño total
         cell.addEventListener("click", function () {
           if (selectedFigure) {
             const size = parseInt(selectedFigure.dataset.size);
@@ -73,15 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           }
         });
-        row.appendChild(cell);
+        tablero.appendChild(cell);
         list.push("");
       }
       matrix.push(list);
     }
-    let botonValidar = document.createElement("button");
-    botonValidar.className = "btn btn-primary";
-    botonValidar.innerText = "START";
-    contenedorTabla.appendChild(botonValidar);
 
     // Eliminar el div con id "inputTamañoTablero"
     document.getElementById("inputTamañoTablero").remove();

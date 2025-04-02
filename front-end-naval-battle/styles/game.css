@@ -25,14 +25,15 @@ body{
 }
 .llenar {
         background-color: rgba(70, 54, 41, 0.79);
-        margin-top: 14%;
+        margin-top: 8%;
         margin-bottom: 9%;
         height: 10%;
     }
 
 
 #tamañoTablero,
-#location{
+#location,
+#nations{
     padding: 0.5%;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.50);
@@ -43,8 +44,8 @@ body{
     color: black;
 }
 /* Cambiar el color del placeholder solo para inputs con la clase 'col-4' */
-input.col-4::placeholder {
-    color: #000000; 
+input.col-12::placeholder {
+    color: #000000;
 }
 
 #botonNumero{

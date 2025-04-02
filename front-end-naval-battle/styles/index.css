@@ -1,4 +1,4 @@
-    @import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
 
     * {
         margin: 0;
@@ -74,7 +74,7 @@
 }
 /* Tabla de juego */
 
-.tabla-juego {
+/* .tabla-juego {
     width: 100%;
     table-layout: fixed;
     background-color: blue;
@@ -94,5 +94,48 @@
   .img-juego {
     width: 100%;
     height: 100%;
+  } */
+  .tablero {
+    border: 2px solid black;
   }
   
+  .grid {
+    flex: 0 0 10%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid black; /* Bordes por defecto */
+    box-sizing: border-box;
+    outline: none; /* Eliminar borde al hacer clic */
+    user-select: none; /* Evitar selección de texto */
+  }
+  
+  .grid:focus {
+    outline: none; /* Asegurar que no se muestre borde al enfocar */
+  }
+  
+  .figure {
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+@media (max-width: 768px) {
+    .btn-sm {
+        font-size: 0.7rem; /* Reducir tamaño en pantallas pequeñas */
+        padding: 4px 8px;
+    }
+}
+

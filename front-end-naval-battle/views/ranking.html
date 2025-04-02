@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking</title>
+    <link rel="stylesheet" href="../styles/ranking.css" />
+</head>
+<body>
+    <div id="ranking-table" class="ranking-container">
+        <div class="ranking-header">
+            <div class="ranking-column">País</div>
+            <div class="ranking-column">Nickname</div>
+            <div class="ranking-column">Puntaje</div>
+          </div>
+          <div id="ranking-body" class="ranking-rows">
+            <!-- Los datos se insertarán aquí dinámicamente -->
+          </div>
+    </div>
+    <script type="module" src="../controllers/apiRanking.js"></script> <!--type modulo por qué: export ni import estan en el java clasico-->
+</body>
+</html>

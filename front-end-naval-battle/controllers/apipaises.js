@@ -1,5 +1,3 @@
-// apiController.js
-
 // Función para obtener la lista de países
 async function fetchCountries() {
     try {

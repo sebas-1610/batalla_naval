@@ -1,4 +1,3 @@
-// controllers/weather-ui.js
 import { getWeatherData } from "./apiweather.js";
 
 function updateWeatherDisplay(weather, countryName, countryCode) {

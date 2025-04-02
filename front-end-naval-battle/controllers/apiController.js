@@ -1,4 +1,4 @@
-// apiController.js
+// Es para los paises solo que no le cambio el nombre por pereza
 
 // Función para obtener la lista de países
 async function fetchCountries() {

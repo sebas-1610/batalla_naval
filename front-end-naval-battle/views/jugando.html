@@ -9,6 +9,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="../styles/jugando.css" />
+    <link rel="stylesheet" href="../styles/game.css" />
+    <script type="module" src="../controllers/jugandoController.js"></script>
+    <script type="module" src="../controllers/urlParams.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg colorNavBar">
@@ -35,11 +39,29 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="btn-group dropend">
+              <!--aqui pongo un dropdown donde ira el ranking-->
+              <button
+                type="button"
+                class="btn dropdown-toggle text-left-btn"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Ranking
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Puesto 1</a></li>
+                <li><a class="dropdown-item" href="#">Puesto 2</a></li>
+                <li><a class="dropdown-item" href="#">Puesto 3</a></li>
+              </ul>
+            </div>
             <li class="nav-item">
+              <!--botón puntaje-->
               <a class="nav-link" href="#">Puntaje</a>
             </li>
           </ul>
           <span class="navbar-text">
+            <!-- Exit Button -->
             <button class="btn btn-outline-danger ms-auto" id="botonSalir">
               SALIR
               <img
@@ -52,16 +74,15 @@
         </div>
       </div>
     </nav>
-
-    <div class="llenar fs-4 text-white d-flex flex-column">
-      <div id="smallBoard" class="mb-4 text-center">
-        <!-- Aquí se mostrará el tablero pequeño -->
-      </div>
-      <div id="largeBoard" class="text-center">
-        <!-- Aquí se mostrará el tablero grande -->
+    <div class="llenar pt-2 fs-3 text-white d-flex flex-column">
+      <div class="board-container">
+        <div id="smallBoard" class="board">
+          <div><!-- Aquí se mostrará el tablero pequeño --></div>
+        </div>
+        <div id="largeBoard" class="board">
+          <!-- Aquí se mostrará el tablero grande -->
+        </div>
       </div>
     </div>
-
-    <script type="module" src="../controllers/jugandoController.js"></script>
   </body>
 </html>

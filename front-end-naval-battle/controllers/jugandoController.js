@@ -1,3 +1,5 @@
+import { GameManager } from "./GameManager.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   const userBoard = JSON.parse(localStorage.getItem("userBoard"));
   const machineBoard = JSON.parse(localStorage.getItem("machineBoard"));
@@ -16,11 +18,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const smallBoardContainer = document.getElementById("smallBoard");
   const largeBoardContainer = document.getElementById("largeBoard");
 
-  renderBoard(smallBoardContainer, userBoard, true, "user");
-  renderBoard(largeBoardContainer, machineBoard, false, "machine");
+  const gameManager = new GameManager(
+    userBoard,
+    machineBoard,
+    (boardType, board) => {
+      if (boardType === "user") {
+        renderBoard(smallBoardContainer, board, true, "user", gameManager);
+      } else if (boardType === "machine") {
+        renderBoard(largeBoardContainer, board, false, "machine", gameManager);
+      }
+    }
+  );
+
+  renderBoard(smallBoardContainer, userBoard, true, "user", gameManager);
+  renderBoard(largeBoardContainer, machineBoard, false, "machine", gameManager);
 });
 
-function renderBoard(container, board, isSmall, boardType) {
+function renderBoard(container, board, isSmall, boardType, gameManager) {
   container.innerHTML = ""; // Limpiar el contenedor
   const size = board.length;
 
@@ -46,10 +60,13 @@ function renderBoard(container, board, isSmall, boardType) {
         else if (cell === "b") cellElement.style.backgroundColor = "blue";
       }
 
-      // Agregar eventos de clic solo al tablero de la máquina
       if (boardType === "machine") {
+        if (cell === "p2-h") cellElement.style.backgroundColor = "red";
+        else if (cell === "b") cellElement.style.backgroundColor = "blue";
+
+        // Agregar eventos de clic solo al tablero de la máquina
         cellElement.addEventListener("click", function () {
-          handlePlayerShot(x, y, board, cellElement);
+          gameManager.handlePlayerShot(x, y);
         });
       }
 
@@ -58,64 +75,4 @@ function renderBoard(container, board, isSmall, boardType) {
   });
 
   container.appendChild(boardElement);
-}
-
-function handlePlayerShot(x, y, board, cellElement) {
-  if (board[x][y] === "p2") {
-    board[x][y] = "p2-h"; // Golpe exitoso
-    cellElement.style.backgroundColor = "red";
-  } else if (board[x][y] === "a") {
-    board[x][y] = "b"; // Agua
-    cellElement.style.backgroundColor = "grey";
-  }
-
-  // Verificar si el barco está completamente destruido
-  if (isShipDestroyed(board, "p2", "p2-h")) {
-    colorDestroyedShip(board, "p2-h", "orange");
-  }
-
-  console.log("JSON actualizado del tablero de la máquina:", board);
-
-  // Turno de la máquina
-  handleMachineShot();
-}
-
-function handleMachineShot() {
-  const userBoard = JSON.parse(localStorage.getItem("userBoard"));
-  const size = userBoard.length;
-
-  let shotFired = false;
-  while (!shotFired) {
-    const x = Math.floor(Math.random() * size);
-    const y = Math.floor(Math.random() * size);
-
-    if (userBoard[x][y] === "p1") {
-      userBoard[x][y] = "p1-h"; // Golpe exitoso
-      shotFired = true;
-    } else if (userBoard[x][y] === "a") {
-      userBoard[x][y] = "b"; // Agua
-      shotFired = true;
-    }
-  }
-
-  console.log("JSON actualizado del tablero del jugador:", userBoard);
-
-  // Actualizar el tablero pequeño
-  const smallBoardContainer = document.getElementById("smallBoard");
-  renderBoard(smallBoardContainer, userBoard, true, "user");
-}
-
-function isShipDestroyed(board, ship, hit) {
-  return !board.some((row) => row.includes(ship));
-}
-
-function colorDestroyedShip(board, hit, color) {
-  board.forEach((row, x) => {
-    row.forEach((cell, y) => {
-      if (cell === hit) {
-        const cellElement = document.getElementById(`${x},${y}`);
-        if (cellElement) cellElement.style.backgroundColor = color;
-      }
-    });
-  });
 }

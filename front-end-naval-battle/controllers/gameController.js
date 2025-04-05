@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function exportBoardsAndRedirect() {
-  const userBoard = generateBoardJSON("p1");
-  const machineBoard = generateBoardJSON("p2");
+  const userBoard = generateBoardJSON("p1", matrix);
+  const machineBoard = generateRandomMachineBoard(matrix.length);
 
   // Guardar los tableros en localStorage
   localStorage.setItem("userBoard", JSON.stringify(userBoard));
@@ -59,13 +59,60 @@ function exportBoardsAndRedirect() {
   window.location.href = "jugando.html";
 }
 
-function generateBoardJSON(player) {
-  return matrix.map((row) =>
+function generateBoardJSON(player, boardMatrix) {
+  return boardMatrix.map((row) =>
     row.map((cell) => {
       if (cell === "ship") return player;
       return "a"; // Agua
     })
   );
+}
+
+function generateRandomMachineBoard(size) {
+  const board = Array.from({ length: size }, () => Array(size).fill("a"));
+  const ships = [
+    { size: 5, count: 1 },
+    { size: 4, count: 1 },
+    { size: 3, count: 2 },
+    { size: 2, count: 2 },
+  ];
+
+  ships.forEach((ship) => {
+    for (let i = 0; i < ship.count; i++) {
+      let placed = false;
+      while (!placed) {
+        const rotation = Math.random() < 0.5 ? 0 : 1; // 0: horizontal, 1: vertical
+        const x = Math.floor(Math.random() * size);
+        const y = Math.floor(Math.random() * size);
+
+        if (canPlaceShip(board, x, y, ship.size, rotation)) {
+          placeShip(board, x, y, ship.size, rotation, "p2");
+          placed = true;
+        }
+      }
+    }
+  });
+
+  return board;
+}
+
+function canPlaceShip(board, x, y, size, rotation) {
+  if (rotation === 0 && y + size > board.length) return false;
+  if (rotation === 1 && x + size > board.length) return false;
+
+  for (let i = 0; i < size; i++) {
+    const cell = rotation === 0 ? board[x][y + i] : board[x + i][y];
+    if (cell !== "a") return false;
+  }
+
+  return true;
+}
+
+function placeShip(board, x, y, size, rotation, marker) {
+  for (let i = 0; i < size; i++) {
+    if (rotation === 0) board[x][y + i] = marker;
+    else board[x + i][y] = marker;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {

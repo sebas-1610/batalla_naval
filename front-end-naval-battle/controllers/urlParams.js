@@ -11,10 +11,18 @@ document.addEventListener("DOMContentLoaded", function () {
       nicknameElement.textContent = nickname; // Asignar el texto del nickname
       console.log(`Nickname: ${nickname}`);
     }
+  } else {
+    console.error("No se encontró el nickname en los parámetros de la URL.");
   }
 
-  // Mostrar la nación en la consola
+  // Mostrar la bandera de la nación en el navbar
   if (nation) {
-    console.log(`Nación seleccionada: ${nation}`);
+    const nationFlagElement = document.getElementById("nationFlag");
+    if (nationFlagElement) {
+      nationFlagElement.src = nation; // Asignar la URL de la bandera
+      console.log(`Nación seleccionada: ${nation}`);
+    }
+  } else {
+    console.error("No se encontró la nación en los parámetros de la URL.");
   }
 });

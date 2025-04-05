@@ -2,7 +2,7 @@ import { matrix } from "./board.js";
 import { createButtons } from "./buttons.js";
 
 let draggedFigure = null;
-let rotation = 0; // 0: horizontal, 1: vertical
+let rotation = 0;
 const maxFigures = {
   BarcoExtraGrande: 1,
   BarcoGrande: 1,
@@ -16,18 +16,16 @@ const placedFigures = {
   BarcoPequeño: 0,
 };
 
+// Inicializa las figuras y botones en el contenedor.
 function initializeFigures() {
   const figureContainer = document.getElementById("figureContainer");
-  figureContainer.innerHTML = ""; // Limpiar el contenedor de figuras
-
-  // Crear botones utilizando la función de buttons.js
+  figureContainer.innerHTML = "";
   createButtons(figureContainer);
-
-  // Crear figuras
   const figures = getFigures();
   figures.forEach(createFigureElement);
 }
 
+// Devuelve la configuración de las figuras disponibles.
 function getFigures() {
   return [
     {
@@ -57,6 +55,7 @@ function getFigures() {
   ];
 }
 
+// Crea un elemento visual para cada figura.
 function createFigureElement(figure) {
   const figureContainer = document.getElementById("figureContainer");
   const figureElement = document.createElement("div");
@@ -81,6 +80,7 @@ function createFigureElement(figure) {
   figureContainer.appendChild(figureElement);
 }
 
+// Maneja el inicio del arrastre de una figura.
 function handleDragStart(figure) {
   if (placedFigures[figure.id] < maxFigures[figure.id]) {
     draggedFigure = figure;
@@ -90,17 +90,18 @@ function handleDragStart(figure) {
   }
 }
 
+// Limpia el estado de la figura arrastrada.
 function handleDragEnd() {
   draggedFigure = null;
 }
 
+// Habilita el arrastre de barcos desde el tablero.
 function enableDraggingFromBoard() {
   matrix.forEach((row, x) => {
     row.forEach((cell, y) => {
       if (cell === "ship") {
         const cellElement = document.getElementById(`${x},${y}`);
         cellElement.setAttribute("draggable", true);
-
         cellElement.addEventListener("dragstart", () =>
           handleDragStartFromBoard(x, y)
         );
@@ -110,25 +111,26 @@ function enableDraggingFromBoard() {
   });
 }
 
+// Maneja el inicio del arrastre desde el tablero.
 function handleDragStartFromBoard(x, y) {
-  draggedFigure = { id: "ship", size: 1 }; // Tamaño temporal
+  draggedFigure = { id: "ship", size: 1 };
   clearShipFromMatrix(x, y);
 }
 
+// Limpia un barco de la matriz.
 function clearShipFromMatrix(x, y) {
   matrix.forEach((row, i) => {
     row.forEach((cell, j) => {
       if (matrix[i][j] === "ship") {
         matrix[i][j] = "";
         const cellElement = document.getElementById(`${i},${j}`);
-        if (cellElement) {
-          cellElement.style.backgroundColor = ""; // Limpiar color
-        }
+        if (cellElement) cellElement.style.backgroundColor = "";
       }
     });
   });
 }
 
+// Maneja el evento de arrastrar sobre una celda.
 function handleDragOver(event) {
   event.preventDefault();
   if (draggedFigure) {
@@ -136,7 +138,6 @@ function handleDragOver(event) {
     const x = parseInt(this.id.split(",")[0]);
     const y = parseInt(this.id.split(",")[1]);
 
-    // Verificar si las celdas están libres y dentro del tablero
     if (canPlaceFigure(x, y, size)) {
       highlightCells(x, y, size, "red");
     } else {
@@ -145,16 +146,17 @@ function handleDragOver(event) {
   }
 }
 
+// Limpia el resaltado de las celdas.
 function handleDragLeave() {
   const size = parseInt(
     draggedFigure?.dataset?.size || draggedFigure?.size || 1
   );
   const x = parseInt(this.id.split(",")[0]);
   const y = parseInt(this.id.split(",")[1]);
-
   highlightCells(x, y, size, "");
 }
 
+// Maneja el evento de soltar una figura en el tablero.
 function handleDrop(event) {
   event.preventDefault();
   if (draggedFigure) {
@@ -176,12 +178,14 @@ function handleDrop(event) {
   }
 }
 
+// Verifica si una figura puede colocarse en una posición.
 function canPlaceFigure(x, y, size) {
   return Array.from({ length: size }, (_, k) =>
     rotation === 0 ? matrix[x][y + k] : matrix[x + k]?.[y]
   ).every((cell) => cell === "");
 }
 
+// Resalta las celdas donde se intenta colocar una figura.
 function highlightCells(x, y, size, color) {
   for (let k = 0; k < size; k++) {
     const targetCell =
@@ -194,6 +198,7 @@ function highlightCells(x, y, size, color) {
   }
 }
 
+// Coloca una figura en el tablero.
 function placeFigureOnBoard(x, y, size, id) {
   for (let k = 0; k < size; k++) {
     const targetCell =
@@ -210,17 +215,16 @@ function placeFigureOnBoard(x, y, size, id) {
   draggedFigure = null;
 }
 
+// Coloca barcos aleatoriamente en el tablero.
 function placeShipsRandomly() {
-  // Reiniciar el tablero
   matrix.forEach((row, x) =>
     row.forEach((_, y) => {
       matrix[x][y] = "";
       const cell = document.getElementById(`${x},${y}`);
-      if (cell) cell.style.backgroundColor = ""; // Limpiar celdas
+      if (cell) cell.style.backgroundColor = "";
     })
   );
 
-  // Reiniciar conteo de barcos colocados
   Object.keys(placedFigures).forEach((key) => (placedFigures[key] = 0));
 
   const figures = getFigures();
@@ -229,7 +233,7 @@ function placeShipsRandomly() {
       let placed = false;
 
       while (!placed) {
-        const randomRotation = Math.random() < 0.5 ? 0 : 1; // 0: horizontal, 1: vertical
+        const randomRotation = Math.random() < 0.5 ? 0 : 1;
         const x = Math.floor(Math.random() * matrix.length);
         const y = Math.floor(Math.random() * matrix.length);
 

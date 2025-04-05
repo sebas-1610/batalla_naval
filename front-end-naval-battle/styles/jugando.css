@@ -1,0 +1,45 @@
+/* General Styles */
+body {
+  background-color: #f8f9fa;
+}
+
+.nation-flag {
+  width: 20px;
+  height: 20px;
+}
+
+.exit-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Board Container */
+.board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 20px; /* Espaciado entre los tableros */
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 0;
+  border: 2px solid black;
+}
+
+.grid {
+  flex: 0 0 calc(100% / 12); /* Ajustar tamaño según el tablero */
+  aspect-ratio: 1 / 1;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    flex: 0 0 calc(100% / 10); /* Ajustar tamaño en pantallas pequeñas */
+  }
+}

@@ -1,22 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranking</title>
-    <link rel="stylesheet" href="../styles/ranking.css" />
+    <title>Ranking de Jugadores</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Estilos personalizados - CORREGIR RUTA -->
+    <link rel="stylesheet" href="/front-end-naval-battle/styles/ranking.css">
 </head>
-<body>
-    <div id="ranking-table" class="ranking-container">
-        <div class="ranking-header">
-            <div class="ranking-column">País</div>
-            <div class="ranking-column">Nickname</div>
-            <div class="ranking-column">Puntaje</div>
-          </div>
-          <div id="ranking-body" class="ranking-rows">
-            <!-- Los datos se insertarán aquí dinámicamente -->
-          </div>
+<body class="bg-light">
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Ranking de Jugadores</h1>
+        
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>RANK</th>
+                        <th>NACIONALIDAD</th>
+                        <th>NICKNAME</th>
+                        <th>PUNTAR</th>
+                    </tr>
+                </thead>
+                <tbody id="ranking-body">
+                    <!-- Los datos se insertarán aquí dinámicamente -->
+                </tbody>
+            </table>
+        </div>
     </div>
-    <script type="module" src="../controllers/apiRanking.js"></script> <!--type modulo por qué: export ni import estan en el java clasico-->
+
+    <!-- Bootstrap JS Bundle con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Nuestro script - CORREGIR RUTA -->
+    <script type="module" src="/front-end-naval-battle/controllers/apiRanking.js"></script>
 </body>
 </html>

@@ -133,3 +133,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// parte que genera la bandera obteniendo el nation que ingresó
+document.addEventListener("DOMContentLoaded", function () {
+  // Obtener el código de país desde la URL (ej: ?nation=co)
+  const params = new URLSearchParams(window.location.search);
+  const countryCode = params.get("nation"); // "co", "us", etc.
+
+  // Si hay un código de país, actualizar la bandera
+  if (countryCode) {
+      const userFlag = document.getElementById("user-flag");
+      
+      // Usar FlagCDN para mostrar la bandera
+      userFlag.src = `https://flagcdn.com/20x15/${countryCode.toLowerCase()}.png`;
+      userFlag.alt = `Bandera de ${countryCode.toUpperCase()}`;
+  }
+});

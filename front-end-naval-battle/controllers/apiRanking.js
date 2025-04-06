@@ -5,55 +5,39 @@ export async function getPlayerRanking() {
             throw new Error(`Error HTTP: ${response.status}`);
         }
         const rankingData = await response.json();
-        
-        // Llenar la estructura de divs con los datos
-        fillRankingDiv(rankingData);
-        
-        return rankingData;
+
+        // Ordenar los datos por puntaje (mayor a menor)
+        const sortedData = rankingData.sort((a, b) => b.score - a.score);
+
+        // Llenar la tabla con los datos ordenados
+        fillRankingTable(sortedData);
+
+        return sortedData;
     } catch (error) {
         console.error('Error al obtener el ranking:', error);
         return null;
-    } 
+    }
 }
 
-function fillRankingDiv(data) {
-    const rankingBody = document.getElementById('ranking-body');
-    rankingBody.innerHTML = ''; // Limpiar el contenedor antes de llenarlo
+function fillRankingTable(data) {
+    const tableBody = document.getElementById('ranking-body');
+    tableBody.innerHTML = ''; // Limpiar el contenedor antes de llenarlo
 
     if (!data || data.length === 0) {
-        const noDataMessage = document.createElement('div');
-        noDataMessage.className = 'ranking-row'; // Clase para estilos
-        noDataMessage.textContent = 'No hay datos disponibles';
-        rankingBody.appendChild(noDataMessage);
+        tableBody.innerHTML = `<tr><td colspan="4" class="text-center text-danger">No hay datos disponibles</td></tr>`;
         return;
     }
 
-    data.forEach(player => {
-        // Crear una fila (div) para cada jugador
-        const playerRow = document.createElement('div');
-        playerRow.className = 'ranking-row'; // Clase para estilos
-
-        // Columna País (con clase para estilos)
-        const countryDiv = document.createElement('div');
-        countryDiv.className = 'ranking-column';
-        countryDiv.textContent = player.country_code.toUpperCase(); // Ejemplo: "CO"
-        playerRow.appendChild(countryDiv);
-
-        // Columna Nickname
-        const nickDiv = document.createElement('div');
-        nickDiv.className = 'ranking-column';
-        nickDiv.textContent = player.nick_name;
-        playerRow.appendChild(nickDiv);
-
-        // Columna Puntaje
-        const scoreDiv = document.createElement('div');
-        scoreDiv.className = 'ranking-column';
-        scoreDiv.textContent = player.score;
-        playerRow.appendChild(scoreDiv);
-
-        // Añadir la fila al cuerpo
-        rankingBody.appendChild(playerRow);
+    data.forEach((player, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td><img src="https://flagcdn.com/16x12/${player.country_code.toLowerCase()}.png" class="flag-img" alt="${player.country_code}"></td>
+            <td>${player.nick_name}</td>
+            <td>${player.score}</td>
+        `;
+        tableBody.appendChild(row);
     });
 }
-// Llamar a la función para obtener el ranking al cargar la página
+
 document.addEventListener('DOMContentLoaded', getPlayerRanking);

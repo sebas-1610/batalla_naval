@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="../styles/weather.css" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="../controllers/gameController.js"></script>
+    <script src="../controllers/apipaises.js"></script>
+    <script type="module" src="../controllers/weather-ui.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg colorNavBar">
@@ -20,7 +23,7 @@
           <!--apartado nickname y modificar bandera segun lo que puso el usuario como nacion -->
           <img
             src="../assets/images/Flag_of_Colombia.svg.webp"
-            alt="Salir"
+            alt="bandera"
             style="width: 20px; height: 20px"
           />
           <!-- Cambiar la src de la imagen para que se ponga la del pais que el usuario seleccionó -->
@@ -66,8 +69,8 @@
             <button class="btn btn-outline-danger ms-auto" id="botonSalir">
               SALIR
               <img
-                src="../assets/images/icons/exit-icon.png"
-                alt="Salir"
+                src="../assets/images/exit-icon.png"
+                alt="icono"
                 style="width: 20px; height: 20px"
               />
             </button>
@@ -123,8 +126,5 @@
     </div>
 
     <!-- ***************** -->
-    <script src="../controllers/gameController.js"></script>
-    <script src="../controllers/apipaises.js"></script>
-    <script type="module" src="../controllers/weather-ui.js"></script>
   </body>
 </html>

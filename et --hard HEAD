@@ -1,0 +1,29 @@
+[33m90b8883[m[33m ([m[1;36mHEAD -> [m[1;32mjarvy[m[33m, [m[1;31morigin/jarvy[m[33m)[m RANKING y bandera usuario
+[33ma91b98c[m Merge branch 'Tablero_Responsive' into jarvy
+[33m17f3df8[m[33m ([m[1;31morigin/Tablero_Responsive[m[33m, [m[1;32mTablero_Responsive[m[33m)[m Merge branch 'Tablero_Responsive' of https://github.com/sebas-1610/batalla_naval into Tablero_Responsive
+[33m90cc257[m mini corrección icono salir
+[33m7584ee7[m Comentarios de texto
+[33m53cd77a[m update del tablero de juego
+[33mf2dd905[m Modificaciones usuario vs maquina
+[33ma44921e[m Creacion del juego contra la maquina
+[33m03d7132[m conecte la api ranking con la interfaz ranking
+[33ma1821cc[m Sobrescribir contenido de tablero_responsive en jarvy
+[33m8372a78[m Merge branch 'Tablero_Responsive' into jarvy
+[33m281f09a[m Mejora Tablero
+[33m5e835da[m Tablero Responsive
+[33m8dae194[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Actualizacion Boton Jugar
+[33m34e50d9[m boton elegir ubicación
+[33m618b7b0[m Cambie el diseño del navbar, y mejore la interfaz de cración de tablero dando un poco de claridad al codigo (revisar que el tablero no es responsive, solo se ensancha)
+[33mf9c8aa8[m Girar Barcos
+[33m6ff6ae7[m Mejora Tabla Juego y Barcos
+[33mb50bcd1[m Styles y Tabla
+[33mc373f77[m Actualizacion tabla
+[33m6824240[m Generacion Tabla
+[33m189ec7c[m Boton-Jugar
+[33mf21067a[m Update readme.md
+[33m88d95a1[m Update readme.md
+[33mc983a80[m Home page
+[33m87ab79d[m ajuste del apicontroller para los paises
+[33md7c7490[m Estructura del proyecto + home
+[33m8cb1123[m Update readme.md
+[33me59ff14[m Plantilla Inicial

@@ -134,18 +134,29 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// parte que genera la bandera obteniendo el nation que ingresó
+// parte que genera la bandera obteniendo el nation que ingresó y la guarda en un localStorage para que tambien se muestre la bandera en la interfaz jugando
 document.addEventListener("DOMContentLoaded", function () {
   // Obtener el código de país desde la URL (ej: ?nation=co)
   const params = new URLSearchParams(window.location.search);
   const countryCode = params.get("nation"); // "co", "us", etc.
+  const nickname = params.get("nickname");
 
-  // Si hay un código de país, actualizar la bandera
+  // Guardar datos primero
   if (countryCode) {
-      const userFlag = document.getElementById("user-flag");
-      
-      // Usar FlagCDN para mostrar la bandera
+    localStorage.setItem("selectedCountry", countryCode.toLowerCase());
+    
+    const userFlag = document.getElementById("user-flag");
+    if (userFlag) {
       userFlag.src = `https://flagcdn.com/20x15/${countryCode.toLowerCase()}.png`;
       userFlag.alt = `Bandera de ${countryCode.toUpperCase()}`;
+    }
+  }
+  
+  if (nickname) {
+    localStorage.setItem("nickname", nickname);
+    const nicknameElement = document.getElementById("nickname");
+    if (nicknameElement) {
+      nicknameElement.textContent = nickname;
+    }
   }
 });

@@ -1,8 +1,29 @@
 import { GameManager } from "./GameManager.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Mostrar bandera y nickname - PRIMERO ESTO
+  const countryCode = localStorage.getItem("selectedCountry");
+  const nickname = localStorage.getItem("nickname");
+  
+  const nationFlag = document.getElementById("nationFlag");
+  const nicknameElement = document.getElementById("nickname");
+  
+  if (countryCode && nationFlag) {
+    nationFlag.src = `https://flagcdn.com/20x15/${countryCode}.png`;
+    nationFlag.alt = `Bandera de ${countryCode.toUpperCase()}`;
+    console.log("Bandera cargada:", nationFlag.src); // Para depuración
+  } else {
+    console.error("No se encontró countryCode o elemento nationFlag");
+  }
+  
+  if (nickname && nicknameElement) {
+    nicknameElement.textContent = nickname;
+  }
+
+  // Resto del código del juego...
   const userBoard = JSON.parse(localStorage.getItem("userBoard"));
   const machineBoard = JSON.parse(localStorage.getItem("machineBoard"));
+ ///////////////////////////////////////////
 
   if (!userBoard || !machineBoard) {
     alert(

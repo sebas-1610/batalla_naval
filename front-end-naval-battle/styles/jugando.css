@@ -18,10 +18,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  gap: 20px; /* Espaciado entre los tableros */
-}
+  gap: 20px;/* Espaciado entre los tableros */
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  }
+  
 
 .board {
   display: flex;
@@ -29,6 +31,8 @@ body {
   justify-content: center;
   margin: 10px 0;
   border: 2px solid black;
+  max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+  overflow: hidden; /* Opcional: evita desbordamiento */
 }
 
 .grid {
@@ -41,5 +45,14 @@ body {
 @media (max-width: 768px) {
   .grid {
     flex: 0 0 calc(100% / 10); /* Ajustar tamaño en pantallas pequeñas */
+  }  
+  #largeBoard {
+    border: 2px solid rgb(255, 200, 0); /* Mantiene el borde negro */
   }
+}
+
+.llenar {
+  width: 100%;
+  overflow: auto; /* Permite scrolling si el contenido es muy grande */
+  padding: 1rem;
 }

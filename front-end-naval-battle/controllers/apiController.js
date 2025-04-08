@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function redirectToGame() {
-  const nickname = document.getElementById("nickname").value.trim();
+  const nickname = document.getElementById("nickname").value.trim(); // Obtener el valor del campo de texto
   const nationsSelect = document.getElementById("nations");
-  const nation = nationsSelect.value; // Obtener directamente el valor seleccionado
+  const nation = nationsSelect.value; // Obtener el valor seleccionado del menú desplegable
 
   if (!nickname) {
     alert("Por favor, ingrese un nickname.");

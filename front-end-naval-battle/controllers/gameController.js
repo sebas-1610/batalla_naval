@@ -55,8 +55,20 @@ function exportBoardsAndRedirect() {
   localStorage.setItem("userBoard", JSON.stringify(userBoard));
   localStorage.setItem("machineBoard", JSON.stringify(machineBoard));
 
-  // Redirigir a jugando.html
-  window.location.href = "jugando.html";
+  // Obtener nickname y nation desde la URL actual
+  const params = new URLSearchParams(window.location.search);
+  const nickname = params.get("nickname");
+  const nation = params.get("nation");
+
+  if (!nickname || !nation) {
+    alert("Error: No se encontraron los datos de nickname o nación.");
+    return;
+  }
+
+  // Redirigir a jugando.html con nickname y nation como parámetros
+  window.location.href = `jugando.html?nickname=${encodeURIComponent(
+    nickname
+  )}&nation=${encodeURIComponent(nation)}`;
 }
 
 function generateBoardJSON(player, boardMatrix) {
@@ -97,12 +109,28 @@ function generateRandomMachineBoard(size) {
 }
 
 function canPlaceShip(board, x, y, size, rotation) {
-  if (rotation === 0 && y + size > board.length) return false;
-  if (rotation === 1 && x + size > board.length) return false;
+  const sizeLimit = board.length;
 
-  for (let i = 0; i < size; i++) {
-    const cell = rotation === 0 ? board[x][y + i] : board[x + i][y];
-    if (cell !== "a") return false;
+  // Verificar si el barco cabe dentro del tablero
+  if (rotation === 0 && y + size > sizeLimit) return false;
+  if (rotation === 1 && x + size > sizeLimit) return false;
+
+  // Verificar si las celdas están libres y si hay espacio alrededor
+  for (let i = -1; i <= size; i++) {
+    for (let j = -1; j <= 1; j++) {
+      const checkX = rotation === 0 ? x + j : x + i;
+      const checkY = rotation === 0 ? y + i : y + j;
+
+      if (
+        checkX >= 0 &&
+        checkY >= 0 &&
+        checkX < sizeLimit &&
+        checkY < sizeLimit &&
+        board[checkX][checkY] !== "a"
+      ) {
+        return false; // Hay un barco o no hay suficiente espacio
+      }
+    }
   }
 
   return true;

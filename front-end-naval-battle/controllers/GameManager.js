@@ -88,11 +88,57 @@ export class GameManager {
         // Verificar si todas las partes del barco han sido golpeadas
         const isDestroyed = ship.every((p) => p.hit);
         if (isDestroyed) {
-          // Eliminado: console.log("Haz destruido un barco");
+          console.log("Haz destruido un barco");
+        }
+
+        // Verificar si todos los barcos han sido destruidos
+        const allShipsDestroyed = ships.every((ship) =>
+          ship.every((part) => part.hit)
+        );
+        if (allShipsDestroyed) {
+          this.endGame("¡Has ganado la partida!");
         }
         break;
       }
     }
+  }
+
+  endGame(message) {
+    // Mensaje de victoria
+    alert(message);
+
+    // Crear botón "Jugar de nuevo"
+    const messageContainer = document.createElement("div");
+    messageContainer.className = "alert alert-success text-center";
+    document.body.appendChild(messageContainer);
+
+    const playAgainButton = document.createElement("button");
+    playAgainButton.className = "btn btn-primary mt-3";
+    playAgainButton.textContent = "Jugar de nuevo";
+
+    // Obtener nickname y nation desde localStorage
+    const nickname = localStorage.getItem("nickname");
+    const nation = localStorage.getItem("nation");
+
+    if (!nickname || !nation) {
+      console.error("Error: No se encontraron los datos de nickname o nación.");
+      return;
+    }
+
+    playAgainButton.addEventListener("click", () => {
+      console.log("AQUI SE SUMAN PUNTOS"); // Indicar dónde se sumarían los puntos
+      // Redirigir a game.html con nickname y nation como parámetros
+      window.location.href = `game.html?nickname=${encodeURIComponent(
+        nickname
+      )}&nation=${encodeURIComponent(nation)}`;
+    });
+
+    // Agregar el botón al mensaje
+    messageContainer.appendChild(playAgainButton);
+
+    // Deshabilitar interacciones adicionales
+    document.body.style.pointerEvents = "none";
+    messageContainer.style.pointerEvents = "auto";
   }
 
   handleMachineTurn() {

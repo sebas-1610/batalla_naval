@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Obtener los parámetros de la URL
-  const params = new URLSearchParams(window.location.search);
-  const nickname = params.get("nickname");
-  const nation = params.get("nation");
+  // Obtener nickname y nation desde localStorage
+  const nickname = localStorage.getItem("nickname");
+  const nation = localStorage.getItem("nation");
 
   // Mostrar el nickname en el navbar
   if (nickname) {
@@ -12,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(`Nickname: ${nickname}`);
     }
   } else {
-    console.error("No se encontró el nickname en los parámetros de la URL.");
+    console.error("No se encontró el nickname en localStorage.");
   }
 
   // Mostrar la bandera de la nación en el navbar
@@ -23,6 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(`Nación seleccionada: ${nation}`);
     }
   } else {
-    console.error("No se encontró la nación en los parámetros de la URL.");
+    console.error("No se encontró la nación en localStorage.");
   }
 });

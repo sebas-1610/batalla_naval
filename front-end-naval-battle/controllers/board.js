@@ -40,20 +40,4 @@ function createMatrix(size) {
   document.getElementById("inputTamañoTablero").remove();
 }
 
-// Limpiar el tablero y reinicia la matriz.
-function cleanBoard() {
-  matrix.forEach((row, x) =>
-    row.forEach((_, y) => {
-      matrix[x][y] = "";
-      const cell = document.getElementById(`${x},${y}`);
-      if (cell) {
-        cell.style.backgroundColor = "";
-        cell.removeAttribute("draggable");
-        cell.innerHTML = "";
-      }
-    })
-  );
-  console.log("Tablero limpiado.");
-}
-
-export { matrix, createMatrix, cleanBoard };
+export { matrix, createMatrix };

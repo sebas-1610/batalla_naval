@@ -1,4 +1,4 @@
-import { createMatrix, cleanBoard, matrix } from "./board.js"; // Importar matrix desde board.js
+import { createMatrix, matrix } from "./board.js"; // Importar matrix desde board.js
 import { enableDraggingFromBoard, initializeFigures } from "./figures.js";
 import "./urlParams.js";
 
@@ -144,14 +144,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Guardar datos primero
   if (countryCode) {
     localStorage.setItem("selectedCountry", countryCode.toLowerCase());
-    
+
     const userFlag = document.getElementById("user-flag");
     if (userFlag) {
       userFlag.src = `https://flagcdn.com/20x15/${countryCode.toLowerCase()}.png`;
       userFlag.alt = `Bandera de ${countryCode.toUpperCase()}`;
     }
   }
-  
+
   if (nickname) {
     localStorage.setItem("nickname", nickname);
     const nicknameElement = document.getElementById("nickname");

@@ -1,4 +1,5 @@
 import { GameManager } from "./GameManager.js";
+import { exportBoardsToTxt } from "./gameController.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Mostrar bandera y nickname - PRIMERO ESTO
@@ -29,6 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Resto del código del juego...
   const userBoard = JSON.parse(localStorage.getItem("userBoard"));
   const machineBoard = JSON.parse(localStorage.getItem("machineBoard"));
+
+  // Add export button functionality
+  const exportButton = document.getElementById("exportButton");
+  if (exportButton) {
+    exportButton.addEventListener("click", () => {
+      exportBoardsToTxt(userBoard, machineBoard);
+    });
+  }
   ///////////////////////////////////////////
 
   if (!userBoard || !machineBoard) {

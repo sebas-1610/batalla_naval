@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function exportBoardsToTxt(userBoard, machineBoard) {
+export function exportBoardsToTxt(userBoard, machineBoard) {
   const boardToText = (board) =>
     board
       .map((row) =>

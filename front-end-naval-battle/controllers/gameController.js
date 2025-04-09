@@ -1,6 +1,5 @@
 import { createMatrix, matrix } from "./board.js"; // Importar matrix desde board.js
 import { enableDraggingFromBoard, initializeFigures } from "./figures.js";
-import "./urlParams.js";
 
 // Recibir del input el nickname del jugador y guardarlo en la sesión
 document.addEventListener("DOMContentLoaded", function () {

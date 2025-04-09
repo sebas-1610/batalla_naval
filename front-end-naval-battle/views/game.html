@@ -21,11 +21,7 @@
       <div class="container-fluid">
         <div class="nickname navbar-brand" href="#">
           <!--apartado nickname y modificar bandera segun lo que puso el usuario como nacion -->
-          <img
-            id="user-flag"
-            alt="bandera"
-            style="width: 20px; height: 20px"
-          />
+          <img id="user-flag" alt="bandera" style="width: 20px; height: 20px" />
           <!-- Cambiar la src de la imagen para que se ponga la del pais que el usuario seleccionó -->
           <a class="navbar-brand" id="nickname"></a>
           |
@@ -45,21 +41,22 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <div class="ranking">
               <!--aqui ira el ranking-->
-              <button 
-              id="ranking-btn" 
-              class="btn btn-outline-primary"
-              onclick="window.open('ranking.html', '_blank', 'width=800,height=600')">
-              <i class="bi bi-trophy-fill"></i> Ver Ranking
-            </button>
+              <button
+                id="ranking-btn"
+                class="btn btn-outline-primary"
+                onclick="window.open('ranking.html', '_blank', 'width=800,height=600')"
+              >
+                <i class="bi bi-trophy-fill"></i> Ver Ranking
+              </button>
             </div>
-            <li class="nav-item">
-              <!--botón puntaje-->
-              <a class="nav-link" href="#">Puntaje</a>
-            </li>
           </ul>
           <span class="navbar-text">
             <!-- Exit Button -->
-            <button class="btn btn-outline-danger ms-auto" id="botonSalir">
+            <button
+              class="btn btn-outline-danger ms-auto"
+              id="botonSalir"
+              onclick="window.location.href='index.html'"
+            >
               SALIR
               <img
                 src="../assets/images/exit-icon.png"

@@ -1,40 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ranking de Jugadores</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
     <!-- Estilos personalizados - CORREGIR RUTA -->
-    <link rel="stylesheet" href="/front-end-naval-battle/styles/ranking.css">
-</head>
-<body class="bg-light">
+    <link rel="stylesheet" href="/front-end-naval-battle/styles/ranking.css" />
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg colorNavBar">
+      <span class="navbar-text">
+        <!-- Mostrar puntaje -->
+        <span id="score-display" class="me-3">Puntaje: 0</span>
+        <!-- Exit Button -->
+      </span>
+    </nav>
     <div class="container py-4">
-        <h1 class="text-center mb-4">Ranking de Jugadores</h1>
-        
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>RANK</th>
-                        <th>NACIONALIDAD</th>
-                        <th>NICKNAME</th>
-                        <th>PUNTAR</th>
-                    </tr>
-                </thead>
-                <tbody id="ranking-body">
-                    <!-- Los datos se insertarán aquí dinámicamente -->
-                </tbody>
-            </table>
-        </div>
+      <h1 class="text-center mb-4">Ranking de Jugadores</h1>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>RANK</th>
+              <th>NACIONALIDAD</th>
+              <th>NICKNAME</th>
+              <th>PUNTAR</th>
+            </tr>
+          </thead>
+          <tbody id="ranking-body">
+            <!-- Los datos se insertarán aquí dinámicamente -->
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Bootstrap JS Bundle con Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Nuestro script - CORREGIR RUTA -->
-    <script type="module" src="/front-end-naval-battle/controllers/apiRanking.js"></script>
-</body>
+    <script
+      type="module"
+      src="/front-end-naval-battle/controllers/apiRanking.js"
+    ></script>
+  </body>
 </html>

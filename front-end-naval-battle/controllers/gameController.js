@@ -47,6 +47,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+function exportBoardsToTxt(userBoard, machineBoard) {
+  const boardToText = (board) =>
+    board
+      .map((row) =>
+        row
+          .map((cell) => (cell === "p1" || cell === "p2" ? "⬜" : "⬛"))
+          .join("")
+      )
+      .join("\n");
+
+  const userBoardText = `Tablero del Usuario:\n${boardToText(userBoard)}\n\n`;
+  const machineBoardText = `Tablero de la Máquina:\n${boardToText(
+    machineBoard
+  )}\n`;
+
+  const blob = new Blob([userBoardText + machineBoardText], {
+    type: "text/plain;charset=utf-8",
+  });
+
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "tableros.txt";
+  link.click();
+}
+
 function exportBoardsAndRedirect() {
   const userBoard = generateBoardJSON("p1", matrix);
   const machineBoard = generateRandomMachineBoard(matrix.length);
@@ -54,6 +79,9 @@ function exportBoardsAndRedirect() {
   // Guardar los tableros en localStorage
   localStorage.setItem("userBoard", JSON.stringify(userBoard));
   localStorage.setItem("machineBoard", JSON.stringify(machineBoard));
+
+  // Exportar los tableros a un archivo .txt
+  exportBoardsToTxt(userBoard, machineBoard);
 
   // Redirigir a jugando.html
   window.location.href = "jugando.html";

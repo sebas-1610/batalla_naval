@@ -34,10 +34,12 @@ document.addEventListener("DOMContentLoaded", fetchCountries);
 document.addEventListener("DOMContentLoaded", function () {
   const botonJugar = document.getElementById("botonJugar");
 
-  botonJugar.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevenir comportamiento por defecto del botón
-    redirectToGame();
-  });
+  if (botonJugar) {  // ← Verifica si el elemento existe
+    botonJugar.addEventListener("click", function (event) {
+      event.preventDefault();
+      redirectToGame();
+      });
+    }
 });
 
 function redirectToGame() {

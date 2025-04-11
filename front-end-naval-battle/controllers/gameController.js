@@ -25,25 +25,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   let boton = document.getElementById("botonNumero");
+  if (boton) {
+    boton.addEventListener("click", function () {
+      let n = parseFloat(document.getElementById("tamañoTablero").value);
+      if (n >= 10 && n <= 20) {
+        createMatrix(n);
+        enableDraggingFromBoard();
+        initializeFigures(); // Inicializar las figuras después de crear el tablero
+  
+        // Crear botón para exportar tableros y redirigir
+        const figureContainer = document.getElementById("figureContainer");
+        const exportButton = document.createElement("button");
+        exportButton.className = "btn btn-success mt-3";
+        exportButton.innerText = "Comenzar Juego";
+        exportButton.addEventListener("click", exportBoardsAndRedirect);
+        figureContainer.appendChild(exportButton);
+      } else {
+        console.log("Ingrese numero valido entre 10 y 20");
+      }
+    });
+  }
 
-  boton.addEventListener("click", function () {
-    let n = parseFloat(document.getElementById("tamañoTablero").value);
-    if (n >= 10 && n <= 20) {
-      createMatrix(n);
-      enableDraggingFromBoard();
-      initializeFigures(); // Inicializar las figuras después de crear el tablero
-
-      // Crear botón para exportar tableros y redirigir
-      const figureContainer = document.getElementById("figureContainer");
-      const exportButton = document.createElement("button");
-      exportButton.className = "btn btn-success mt-3";
-      exportButton.innerText = "Comenzar Juego";
-      exportButton.addEventListener("click", exportBoardsAndRedirect);
-      figureContainer.appendChild(exportButton);
-    } else {
-      console.log("Ingrese numero valido entre 10 y 20");
-    }
-  });
 });
 
 export function exportBoardsToTxt(userBoard, machineBoard) {
@@ -142,24 +144,27 @@ function placeShip(board, x, y, size, rotation, marker) {
   }
 }
 
+//me ayuda contener el tablero donde lo necesito antes de empezar a jugar donde lo necesito
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("contenedorTablero").style.width = "65%";
-  document.getElementById("contenedorTablero").style.margin = "0 auto";
-  document
-    .getElementById("contenedorTablero")
-    .classList.add("contenedor-tablero");
+  const contenedorTablero = document.getElementById("contenedorTablero");
+
+  if (contenedorTablero) {
+      contenedorTablero.classList.add("contenedor-tablero");
+  } else {
+      console.error("El elemento 'contenedorTablero' no existe en el DOM. (excepto si estoy en jugando.html eso no cuenta como error porque no debe existir en esa interfaz solo en game)");
+      return; // Salir si el elemento no existe
+  }
 
   document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("grid")) {
-      let img = document.createElement("img");
-      img.style.width = "100%";
-      img.style.height = "100%";
-      img.classList.add("img-juego");
-      event.target.innerHTML = "";
-      event.target.appendChild(img);
-    }
+      if (event.target.classList.contains("grid")) {
+          let img = document.createElement("img");
+          img.classList.add("img-juego");
+          event.target.innerHTML = "";
+          event.target.appendChild(img);
+      }
   });
 });
+
 
 // parte que genera la bandera obteniendo el nation que ingresó y la guarda en un localStorage para que tambien se muestre la bandera en la interfaz jugando
 document.addEventListener("DOMContentLoaded", function () {
